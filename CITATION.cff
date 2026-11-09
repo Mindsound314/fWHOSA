@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use fwhosa, please cite it using these metadata."
+title: "fwhosa: fast wavelet higher-order spectral analysis"
+abstract: >-
+  Wavelet bispectrum, bicoherence and their three-channel cross forms on one
+  validated engine, with stated density measures, surrogate null tests and a
+  known-answer test suite.
+type: software
+authors:
+  - family-names: AlSuwaidi
+    given-names: Ali
+    affiliation: Khalifa University
+version: 0.1.0
+license: BSD-3-Clause
+keywords:
+  - bispectrum
+  - bicoherence
+  - wavelet
+  - higher-order spectra
+  - EEG

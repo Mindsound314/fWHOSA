@@ -1,0 +1,31 @@
+# fwhosa 0.1.0 | python benchmarks/calibrate_window_rule.py --seeds 20 | 2026-11-09 | Linux, 2 cores, backend cpu
+condition                     model fit (median null b^2 x dof, by dof bin)
+fb=1.5 win=1.0 white  0.68/0.68  0.84/0.83  0.90/0.89    -  
+fb=1.5 win=1.0 pink   0.68/0.68  0.83/0.83  0.90/0.88    -  
+fb=1.5 win=1.0 brown  0.68/0.68  0.83/0.82  0.89/0.88    -  
+fb=1.5 win=2.0 white    -    0.84/0.83  0.90/0.91  0.95/0.94
+fb=1.5 win=2.0 pink     -    0.84/0.83  0.90/0.91  0.95/0.93
+fb=1.5 win=2.0 brown    -    0.84/0.82  0.89/0.91  0.94/0.93
+fb=1.5 win=4.0 white    -      -    0.93/0.91  0.96/0.96
+fb=1.5 win=4.0 pink     -      -    0.93/0.90  0.96/0.96
+fb=1.5 win=4.0 brown    -      -    0.93/0.89  0.95/0.96
+fb=2.0 win=1.0 white  0.68/0.69  0.83/0.83  0.88/0.88    -  
+fb=2.0 win=1.0 pink   0.68/0.69  0.83/0.83  0.88/0.88    -  
+fb=2.0 win=1.0 brown  0.68/0.69  0.83/0.83  0.88/0.88    -  
+fb=2.0 win=2.0 white    -    0.84/0.85  0.91/0.91  0.94/0.94
+fb=2.0 win=2.0 pink     -    0.84/0.85  0.91/0.90  0.93/0.94
+fb=2.0 win=2.0 brown    -    0.84/0.85  0.91/0.90  0.93/0.93
+fb=2.0 win=4.0 white    -      -    0.93/0.92  0.95/0.96
+fb=2.0 win=4.0 pink     -      -    0.93/0.92  0.95/0.96
+fb=2.0 win=4.0 brown    -      -    0.92/0.92  0.95/0.95
+fb=3.0 win=1.0 white  0.67/0.67  0.80/0.80    -      -  
+fb=3.0 win=1.0 pink   0.67/0.67  0.80/0.79    -      -  
+fb=3.0 win=1.0 brown  0.67/0.67  0.80/0.79    -      -  
+fb=3.0 win=2.0 white  0.67/0.69  0.83/0.84  0.89/0.89    -  
+fb=3.0 win=2.0 pink   0.67/0.69  0.83/0.83  0.89/0.89    -  
+fb=3.0 win=2.0 brown  0.67/0.69  0.83/0.83  0.89/0.89    -  
+fb=3.0 win=4.0 white    -    0.83/0.84  0.91/0.91  0.94/0.94
+fb=3.0 win=4.0 pink     -    0.83/0.84  0.91/0.91  0.94/0.94
+fb=3.0 win=4.0 brown    -    0.83/0.83  0.90/0.91  0.94/0.94
+
+Each cell: selection-set / validation-set median of (null mean b^2 * dof) for dof bins [0,2) [2,5) [5,10) [10,inf). Values near 1 mean the DOF model holds; choose min_dof as the lowest bin edge where both sets stay near 1, then confirm power with coupled().

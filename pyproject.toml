@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fwhosa"
+dynamic = ["version"]
+description = "Fast wavelet higher-order spectral analysis: wavelet bispectrum and bicoherence with known-answer tests"
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "Ali AlSuwaidi" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "numba>=0.59",
+]
+keywords = ["bispectrum", "bicoherence", "wavelet", "higher-order spectra", "EEG",
+            "cross-frequency coupling", "phase coupling"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+[project.optional-dependencies]
+gpu = ["cupy-cuda12x>=13"]
+fcwt = ["fCWT>=0.1.18"]
+plot = ["matplotlib>=3.7"]
+dev = ["pytest>=8", "matplotlib>=3.7"]
+
+[tool.hatch.version]
+path = "src/fwhosa/_version.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "examples", "benchmarks", "README.md", "LICENSE", "CITATION.cff", "CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "slow: statistical tests that take several seconds",
+    "cuda: needs CuPy and a CUDA device (run locally, not in CI)",
+]
+filterwarnings = [
+    # Expected: the tests use coarse grids and short windows to stay fast.
+    "ignore:df = .* is coarser than twice:UserWarning",
+    "ignore:.* triads have fewer than min_dof:UserWarning",
+]
