@@ -27,6 +27,11 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 
+[project.urls]
+Repository = "https://github.com/Mindsound314/fWHOSA"
+Issues = "https://github.com/Mindsound314/fWHOSA/issues"
+Changelog = "https://github.com/Mindsound314/fWHOSA/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
 gpu = ["cupy-cuda12x>=13"]
 fcwt = ["fCWT>=0.1.18"]

@@ -1,5 +1,7 @@
 # fwhosa
 
+[![tests](https://github.com/Mindsound314/fWHOSA/actions/workflows/ci.yml/badge.svg)](https://github.com/Mindsound314/fWHOSA/actions/workflows/ci.yml)
+
 **Fast wavelet higher-order spectral analysis.** Wavelet bispectrum, bicoherence and
 their three-channel cross forms on one validated engine, with stated density measures,
 surrogate null tests and a known-answer test suite.
@@ -26,7 +28,7 @@ pip install "fwhosa[plot]"      # + matplotlib for HOSResult.plot
 pip install "fwhosa[fcwt]"      # + optional fCWT transform (Linux: apt install libfftw3-single3)
 ```
 
-From source: `pip install -e ".[dev]"` and `pytest`.
+Before the first PyPI release: `pip install "git+https://github.com/Mindsound314/fWHOSA"`. From a clone: `pip install -e ".[dev]"` and `pytest`.
 
 ## Quick start
 
