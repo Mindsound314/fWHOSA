@@ -15,18 +15,22 @@ res.valid           # which estimates to trust, and res.flags says why not
 res.plot(window=0)  # f1 horizontal, f2 vertical
 ```
 
-Status: v0.1.0. The NumPy reference and Numba CPU backends pass the full test suite.
-The CuPy CUDA backend is implemented to the same contract; run `pytest -m cuda` on your
-GPU before relying on it, because CI runners have no GPU.
+Status: v0.1.0. All three backends pass the known-answer suite: NumPy and Numba in CI on
+Linux, CUDA on an RTX 5090 under Windows (CuPy 14.2, CUDA 13.1). CI has no GPU, so rerun
+`pytest` on a GPU machine before relying on a new version.
 
 ## Install
 
 ```bash
 pip install fwhosa              # numpy, scipy, numba
-pip install "fwhosa[gpu]"       # + CuPy for CUDA 12.x (Blackwell GPUs need CUDA 12.8+)
+pip install "fwhosa[gpu]"       # + CuPy with its own CUDA 12.9 libraries; no CUDA Toolkit needed
 pip install "fwhosa[plot]"      # + matplotlib for HOSResult.plot
 pip install "fwhosa[fcwt]"      # + optional fCWT transform (Linux: apt install libfftw3-single3)
 ```
+
+With conda, install CuPy from conda-forge instead (`conda install -c conda-forge cupy`; the
+CUDA validation used CuPy from conda) and skip `[gpu]`: two CuPy packages in one environment
+break each other. Blackwell GPUs such as the RTX 50 series need CUDA 12.8 or newer.
 
 Before the first PyPI release: `pip install "git+https://github.com/Mindsound314/fWHOSA"`. From a clone: `pip install -e ".[dev]"` and `pytest`.
 
@@ -163,17 +167,21 @@ independent records.
 engine, and records its choice in `res.params["backend"]`. `"cuda"` fails loudly when
 unavailable; `"reference"` is the readable NumPy implementation the others must match.
 
-On two CPU cores the Numba engine processes about 1e8 triad-samples per second: 0.15 s per
-channel-minute for 1,653 triads at 160 Hz. Surrogate inference multiplies that by the
-number of surrogates, which is what the CUDA backend is for. Measure your own machine with
-`python benchmarks/bench_engine.py --backend cuda`.
+End to end, 10 minutes of one channel at 160 Hz with 1,653 triads takes 1.07 s on two cloud
+vCPUs, 0.61 s on the CPU of an RTX 5090 workstation and 0.55 s on its GPU. In v0.1 the GPU
+computes only the triple products; the wavelet transform and the other steps run on the CPU
+for both backends, so a fast multicore CPU gets most of the benefit. A GPU transform is
+planned for v0.2. A surrogate test multiplies these times by the number of surrogates plus
+one. Measure your own machine with `python benchmarks/bench_engine.py --minutes 10`
+(add `--backend cuda` for the GPU).
 
 Recordings that exceed `memory_limit` are processed in segments with guard bands, and the
 segmented result matches the whole-recording one to the guard tolerance (`tests/test_boundary.py`).
 
 ## Validation
 
-`pytest` runs the known-answer suite; `pytest -m cuda` adds the GPU checks.
+`pytest` runs the known-answer suite. On a machine with CuPy and a CUDA GPU it also runs the
+GPU versions of the engine and golden tests; CI runs the rest with `pytest -m "not cuda"`.
 
 | Tests | What they establish |
 | --- | --- |

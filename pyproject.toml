@@ -33,7 +33,7 @@ Issues = "https://github.com/Mindsound314/fWHOSA/issues"
 Changelog = "https://github.com/Mindsound314/fWHOSA/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
-gpu = ["cupy-cuda12x>=13"]
+gpu = ["cupy-cuda12x[ctk]>=14"]
 fcwt = ["fCWT>=0.1.18"]
 plot = ["matplotlib>=3.7"]
 dev = ["pytest>=8", "matplotlib>=3.7"]
