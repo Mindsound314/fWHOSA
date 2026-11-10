@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-11-10)
 
 First public release, replacing the five legacy modules (`fCWBispectrum_gpu.py`,
 `fWHOSA_v0.1.py`, `fWHOSA_bicoherence.py`, `fWHOSA_crossbispec_v0_1.py`,
@@ -32,8 +32,10 @@ First public release, replacing the five legacy modules (`fCWBispectrum_gpu.py`,
 - Known-answer test suite; golden arrays in `tests/data/golden_v0.1.npz`.
 
 ### Known limitations
-- The CUDA backend is implemented to the engine contract but has not yet been validated on
-  hardware in CI; run `pytest -m cuda` on your GPU before relying on it.
+- CI has no GPU. The CUDA backend passed the full suite on an RTX 5090 (Windows, CuPy 14.2,
+  CUDA 13.1); rerun `pytest` on a GPU before relying on a new version.
+- The wavelet transform runs on the CPU for both backends, so CUDA gains little end to end
+  in v0.1 (about 10% on an RTX 5090 workstation).
 - `min_dof = 2` rests on the null half of the window-rule calibration; the power half is
   still to be run.
 - Effective DOF uses a white-noise approximation (within about 20% of simulation for dof >= 2).
