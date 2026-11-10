@@ -11,6 +11,8 @@ authors:
     given-names: Ali
     affiliation: Khalifa University
 version: 0.1.0
+date-released: 2026-11-10
+doi: 10.5281/zenodo.24081384
 repository-code: "https://github.com/Mindsound314/fWHOSA"
 license: BSD-3-Clause
 keywords:

@@ -1,6 +1,7 @@
 # fwhosa
 
 [![tests](https://github.com/Mindsound314/fWHOSA/actions/workflows/ci.yml/badge.svg)](https://github.com/Mindsound314/fWHOSA/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24081384.svg)](https://doi.org/10.5281/zenodo.24081384)
 
 **Fast wavelet higher-order spectral analysis.** Wavelet bispectrum, bicoherence and
 their three-channel cross forms on one validated engine, with stated density measures,
@@ -210,7 +211,9 @@ GPU versions of the engine and golden tests; CI runs the rest with `pytest -m "n
 
 ## Citing
 
-Please cite the software (see `CITATION.cff`) and the methods it implements:
+Please cite the software and the methods it implements. The software DOI
+[10.5281/zenodo.24081384](https://doi.org/10.5281/zenodo.24081384) covers all versions; Zenodo also lists a DOI
+for each release, and `CITATION.cff` holds the full metadata. The methods:
 Kim & Powers (1979), *IEEE Trans. Plasma Sci.* 7:120-131, for the paired-moment
 bicoherence; Newman, Pidde & Stefanovska (2021), *Appl. Comput. Harmon. Anal.* 51:171-224,
 for the wavelet bispectral density; Arts & van den Broek (2022), *Nat. Comput. Sci.*, for
